@@ -1,8 +1,18 @@
+$breakpoint1: 1000px;
+$breakpoint2: 1700px;
 .navBar {
     display: flex;
     align-items: center;
     padding: 1rem;
     flex: 0 1 auto;
+
+    @media (min-width: $breakpoint1) {
+        padding: 2rem 20rem;
+    }
+    
+    @media (min-width: $breakpoint2) {
+        padding: 2rem 50rem;
+    }
 }
 
 .homeLink:link,

@@ -1,0 +1,28 @@
+.heroTextsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.mainHeading {
+    font-size: 4.3rem;
+    color: #f3f3f3;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.span1, .span2 {
+    color: #d307ea;
+}
+
+.signupButton {
+    border: none;
+    align-self: center;
+    font-size: 1.8rem;
+    padding: 1.5rem 3rem;
+    background-color: #d307ea;
+    color: #f3f3f3;
+    border-radius: 1.2rem;
+    letter-spacing: .2rem;
+}

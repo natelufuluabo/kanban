@@ -2,7 +2,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
 import { app } from "./config";
 import { User } from "@/classes/User";
 import { formDataType } from "@/components/LogInForm";
-import { addUser } from "./usersCollection";
+import { addUser, getUser } from "./usersCollection";
 
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);

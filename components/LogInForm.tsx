@@ -17,6 +17,10 @@ export const LogInForm = () => {
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     await signInUser(formData);
+    setFormData({
+      email: "",
+      password: ""
+    });
   }
   return (
     <form className={styles.logInForm} onSubmit={handleSubmit}>

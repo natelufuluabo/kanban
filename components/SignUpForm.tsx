@@ -1,7 +1,7 @@
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import styles from "./SignUpForm.module.scss";
 import { User } from "@/classes/User";
-import { signUpFormformValidate } from "@/utilities/utils-functions";
+import { signUpFormformValidate } from "@/Utilities/utils-functions";
 import { signUpUser } from "@/firebase/authentication";
 
 interface propsType {

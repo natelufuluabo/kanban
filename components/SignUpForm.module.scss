@@ -76,6 +76,13 @@ $breakpoint2: 1700px;
     }
 }
 
+.errorMessage {
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: .2rem;
+    color: red;
+}
+
 .signUpButton {
     border: none;
     align-self: center;

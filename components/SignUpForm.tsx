@@ -1,6 +1,9 @@
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
+import * as EmailValidator from 'email-validator';
 import styles from "./SignUpForm.module.scss";
 import { User } from "@/classes/User";
+import { signUpFormformValidate } from "@/Utilities/utils-functions";
+
 
 interface propsType {
   setSignUpShowing: Dispatch<SetStateAction<boolean>>
@@ -13,10 +16,20 @@ export const SignUpForm = ({ setSignUpShowing }: propsType) => {
     email: "",
     password: ""
   });
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const newUser = new User(formDatas.firstName, formDatas.lastName, formDatas.email, formDatas.password);
-    console.log(newUser);
+    if (signUpFormformValidate(formDatas, setErrorMessage)) {
+      const newUser = new User(formDatas.firstName, formDatas.lastName, formDatas.email, formDatas.password);
+      console.log(newUser);
+      setFormDatas({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: ""
+      });
+      setSignUpShowing(false);
+    }
   };
   return (
     <div className={styles.signUpFormContainer}>
@@ -63,6 +76,9 @@ export const SignUpForm = ({ setSignUpShowing }: propsType) => {
             value={formDatas.password}
             onChange={(evt) => setFormDatas({ ...formDatas, [evt.target.name]: evt.target.value})}  
           />
+        </div>
+        <div className={styles.errorContainer}>
+          <p className={styles.errorMessage}>{errorMessage}</p>
         </div>
         <button type="submit" className={styles.signUpButton}>Sign Up</button>
       </form>

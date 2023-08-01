@@ -1,8 +1,7 @@
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
-import * as EmailValidator from 'email-validator';
 import styles from "./SignUpForm.module.scss";
 import { User } from "@/classes/User";
-import { signUpFormformValidate } from "@/Utilities/utils-functions";
+import { signUpFormformValidate } from "@/utilities/utils-functions";
 
 
 interface propsType {

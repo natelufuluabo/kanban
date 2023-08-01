@@ -2,7 +2,7 @@ import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import styles from "./SignUpForm.module.scss";
 import { User } from "@/classes/User";
 import { signUpFormformValidate } from "@/utilities/utils-functions";
-
+import { signUpUser } from "@/firebase/authentication";
 
 interface propsType {
   setSignUpShowing: Dispatch<SetStateAction<boolean>>
@@ -16,11 +16,10 @@ export const SignUpForm = ({ setSignUpShowing }: propsType) => {
     password: ""
   });
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     if (signUpFormformValidate(formDatas, setErrorMessage)) {
-      const newUser = new User(formDatas.firstName, formDatas.lastName, formDatas.email, formDatas.password);
-      console.log(newUser);
+      await signUpUser(formDatas);
       setFormDatas({
         firstName: "",
         lastName: "",

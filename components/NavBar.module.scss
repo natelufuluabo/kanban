@@ -4,16 +4,9 @@ $breakpoint2: 1700px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: .1rem solid #d307ea;
+    border-bottom: .1rem solid #d307ea93;
     flex: 0 1 auto;
-
-    @media (min-width: $breakpoint1) {
-        padding: 2rem 20rem;
-    }
-    
-    @media (min-width: $breakpoint2) {
-        padding: 2rem 50rem;
-    }
+    padding: 1rem 0;
 }
 
 .homeLink:link,

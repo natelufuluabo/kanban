@@ -10,7 +10,6 @@ export default function Home() {
   const [signUpShowing, setSignUpShowing] = useState<boolean>(false);
   return (
     <>
-      <NavBar />
       <main className={styles.mainContainer}>
         <article className={styles.article}>
           <HeroSection
@@ -20,14 +19,6 @@ export default function Home() {
           { signUpShowing && <SignUpForm setSignUpShowing = {setSignUpShowing} /> }
         </article>
       </main>
-      <footer className={styles.footer}>
-        <p className={styles.footerText}>
-          kanban &copy; 2023 
-        </p>
-        <p className={styles.footerText}>
-          Terms / Privacy policy
-        </p>
-      </footer>
     </>
   )
 };

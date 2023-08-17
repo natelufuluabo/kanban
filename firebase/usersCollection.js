@@ -1,10 +1,9 @@
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore"; 
 import { db } from "./config";
-import { User } from "@/classes/User";
 
 const usersRef = collection(db, "users");
 
-export const addUser = async (user: User, authID: string) => {
+export const addUser = async (user, authID) => {
     try {
         const docRef = await addDoc(usersRef, {
             firstName: user.firstName,
@@ -18,7 +17,7 @@ export const addUser = async (user: User, authID: string) => {
     }
 };
 
-export const getUser = async (authID: string) => {
+export const getUser = async (authID) => {
     try {
         const q = query(usersRef, where("authID", "==", authID));
         const result = await getDocs(q);

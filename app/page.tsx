@@ -7,7 +7,7 @@ import { LogInForm } from '@/components/LogInForm';
 import { SignUpForm } from '@/components/SignUpForm';
 
 export default function Home() {
-  const [signUpShowing, setSignUpShowing] = useState(false);
+  const [signUpShowing, setSignUpShowing] = useState<boolean>(false);
   return (
     <>
       <NavBar />

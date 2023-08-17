@@ -3,7 +3,8 @@ $breakpoint2: 1700px;
 .navBar {
     display: flex;
     align-items: center;
-    padding: 1rem;
+    justify-content: center;
+    border-bottom: .1rem solid #d307ea;
     flex: 0 1 auto;
 
     @media (min-width: $breakpoint1) {
@@ -20,7 +21,7 @@ $breakpoint2: 1700px;
 .homeLink:hover,
 .homeLink:active {
     text-decoration: none;
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 600;
     letter-spacing: .2rem;
     color: #d307ea;

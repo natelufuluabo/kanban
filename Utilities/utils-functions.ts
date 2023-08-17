@@ -1,16 +1,17 @@
 import * as EmailValidator from 'email-validator';
 import { User } from "@/classes/User";
+import { formDataType } from '@/components/LogInForm';
 import { Dispatch, SetStateAction } from 'react';
 
 export const signUpFormformValidate = (formData: User, setErrorMessage: Dispatch<SetStateAction<string>>) => {
-    const formDatas = formData;
-    const passwordValidator = require("password-validator");
-    const passwordSchema = new passwordValidator();
-    passwordSchema
-      .is().min(8)
-      .is().max(14)
-      .has().digits(1)                                
-      .has().not().spaces()
+  const formDatas = formData;
+  const passwordValidator = require("password-validator");
+  const passwordSchema = new passwordValidator();
+  passwordSchema
+    .is().min(8)
+    .is().max(14)
+    .has().digits(1)                                
+    .has().not().spaces()
     if (formDatas.firstName.length <= 0 || formDatas.lastName.length <= 0 || !EmailValidator.validate(formDatas.email) || !passwordSchema.validate(formDatas.password)) {
       if (formDatas.firstName.length <= 0) {
         setErrorMessage("First Name Required");
@@ -29,4 +30,19 @@ export const signUpFormformValidate = (formData: User, setErrorMessage: Dispatch
         return false;
       }
     } else return true;
+}
+
+export const loginFormformValidate = (formData: formDataType, setErrorMessage: Dispatch<SetStateAction<string>>) => {
+  const formDatas = formData;
+  if (!EmailValidator.validate(formDatas.email) || formDatas.password.length === 0) {
+    if (!EmailValidator.validate(formDatas.email)) {
+      setErrorMessage("Email Required");
+      return false;
+    } 
+    if (formDatas.password.length === 0) {
+      setErrorMessage("Password Required");
+      return false;
+    }
+  }
+  return true;
 }

@@ -1,7 +1,9 @@
 "use client";
 import { FormEvent, useState } from "react";
-import { signInUser } from "@/firebase/authentication";
 import styles from "./LogInForm.module.scss";
+import { signInUser } from "@/firebase/authentication";
+import { loginFormformValidate } from "@/Utilities/utils-functions";
+import { DualRingComponent } from "./DualRing";
 
 export interface formDataType {
   email: string;
@@ -10,17 +12,19 @@ export interface formDataType {
 
 export const LogInForm = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [waiting, setWaiting] = useState<boolean>(false);
   const [formData, setFormData] = useState<formDataType>({
     email: "",
     password: ""
   });
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    await signInUser(formData);
-    setFormData({
-      email: "",
-      password: ""
-    });
+    console.log("Clicked")
+    setWaiting(true);
+    if (loginFormformValidate(formData, setErrorMessage)) {
+      await signInUser(formData, setErrorMessage, setFormData);
+    }
+    setWaiting(false);
   }
   return (
     <form className={styles.logInForm} onSubmit={handleSubmit}>
@@ -31,7 +35,6 @@ export const LogInForm = () => {
           name="email"
           value={formData.email}
           onChange={(evt) => setFormData({ ...formData, [evt.target.name]: evt.target.value })}
-          required
         />
       </div>
       <div className={styles.inputFormContainer}>
@@ -41,13 +44,12 @@ export const LogInForm = () => {
           name="password"
           value={formData.password}
           onChange={(evt) => setFormData({ ...formData, [evt.target.name]: evt.target.value })}
-          required
         />
       </div>
       <div className={styles.errorContainer}>
-          <p className={styles.errorMessage}>{errorMessage}</p>
-        </div>
-      <button className={styles.logInButton}>Log In</button>
+        <p className={styles.errorMessage}>{errorMessage}</p>
+      </div>
+      <button className={styles.logInButton}>Log In { waiting && <DualRingComponent /> }</button>
     </form>
   )
 }

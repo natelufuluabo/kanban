@@ -5,7 +5,7 @@ import { addUser } from "./usersCollection";
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
-export const signUpUser = async (user, setErrorMessage) => {
+export const signUpUser = async (user, setErrorMessage, setSuccessMessageShowing) => {
     try {
         // Create user for authentication
         const userCredential = await createUserWithEmailAndPassword(auth, user.email, user.password)
@@ -14,6 +14,7 @@ export const signUpUser = async (user, setErrorMessage) => {
         // Add user in database
         await addUser(user, authID);
         setErrorMessage("");
+        setSuccessMessageShowing(true);
     } catch (error) {
         setErrorMessage(error.message);
     };

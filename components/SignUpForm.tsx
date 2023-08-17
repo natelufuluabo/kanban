@@ -5,6 +5,8 @@ import { User } from "@/classes/User";
 import { signUpFormformValidate } from "@/Utilities/utils-functions";
 import { signUpUser } from "@/firebase/authentication";
 import { DualRingComponent } from "./DualRing";
+import { SuccessMessage } from "./SuccesMessage";
+
 
 export const SignUpForm = () => {
   const [formDatas, setFormDatas] = useState<User>({
@@ -14,12 +16,13 @@ export const SignUpForm = () => {
     password: ""
   });
   const [waiting, setWaiting] = useState<boolean>(false);
+  const [successMessageShowing, setSuccessMessageShowing] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     setWaiting(true);
     if (signUpFormformValidate(formDatas, setErrorMessage)) {
-      await signUpUser(formDatas, setErrorMessage);
+      await signUpUser(formDatas, setErrorMessage, setSuccessMessageShowing);
       setFormDatas({
         firstName: "",
         lastName: "",
@@ -79,6 +82,7 @@ export const SignUpForm = () => {
         </div>
         <button type="submit" className={styles.signUpButton}>Sign Up { waiting && <DualRingComponent /> } </button>
       </form>
+      { successMessageShowing && <SuccessMessage setSuccessMessageShowing={setSuccessMessageShowing} /> }
     </main>
   )
 };

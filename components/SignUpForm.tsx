@@ -4,6 +4,7 @@ import styles from "./SignUpForm.module.scss";
 import { User } from "@/classes/User";
 import { signUpFormformValidate } from "@/Utilities/utils-functions";
 import { signUpUser } from "@/firebase/authentication";
+import { DualRingComponent } from "./DualRing";
 
 export const SignUpForm = () => {
   const [formDatas, setFormDatas] = useState<User>({
@@ -12,11 +13,13 @@ export const SignUpForm = () => {
     email: "",
     password: ""
   });
+  const [waiting, setWaiting] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+    setWaiting(true);
     if (signUpFormformValidate(formDatas, setErrorMessage)) {
-      await signUpUser(formDatas);
+      await signUpUser(formDatas, setErrorMessage);
       setFormDatas({
         firstName: "",
         lastName: "",
@@ -24,6 +27,7 @@ export const SignUpForm = () => {
         password: ""
       });
     }
+    setWaiting(false);
   };
   return (
     <main className={styles.signUpFormContainer}>
@@ -73,7 +77,7 @@ export const SignUpForm = () => {
         <div className={styles.errorContainer}>
           <p className={styles.errorMessage}>{errorMessage}</p>
         </div>
-        <button type="submit" className={styles.signUpButton}>Sign Up</button>
+        <button type="submit" className={styles.signUpButton}>Sign Up { waiting && <DualRingComponent /> } </button>
       </form>
     </main>
   )

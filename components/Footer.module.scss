@@ -5,6 +5,7 @@ $breakpoint2: 1700px;
     justify-content: space-between;
     align-items: center;
     padding: 2rem 1rem;
+    border-top: .1rem solid #d307ea93;
 
     @media (min-width: $breakpoint1) {
         padding: 2rem 20rem;

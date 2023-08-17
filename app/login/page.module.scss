@@ -6,12 +6,14 @@
     }
 
     @media (max-width: 500px) {
-        width: 80%;
+        width: 90%;
     }
 }
 
 .main {
     display: flex;
+    flex: 1 1 auto;
     justify-content: center;
+    align-content: flex-start;
     padding-top: 5rem;
 }

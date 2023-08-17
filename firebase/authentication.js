@@ -13,8 +13,6 @@ export const signUpUser = async (user) => {
         const authID = userCredential.user.uid;
         // Add user in database
         await addUser(user, authID);
-        // Redirect user to login page
-        window.location.href = "/login";
     } catch (error) {
         console.error(error);
     };

@@ -4,13 +4,10 @@ import styles from "./page.module.scss";
 
 export default function Home() {
     return (
-        <>
-            <NavBar />
-            <main className={styles.main}>
-                <article className={styles.article}>
-                    <LogInForm />
-                </article>
-            </main>
-        </>
+        <main className={styles.main}>
+            <article className={styles.article}>
+                <LogInForm />
+            </article>
+        </main>
     )
 };

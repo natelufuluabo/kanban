@@ -16,7 +16,11 @@
     color: #d307ea;
 }
 
-.signupButton {
+.signupButton:link,
+.signupButton:visited,
+.signupButton:hover,
+.signupButton:active {
+    text-decoration: none;
     border: none;
     align-self: center;
     font-size: 1.8rem;
@@ -25,4 +29,5 @@
     color: #f3f3f3;
     border-radius: 1.2rem;
     letter-spacing: .2rem;
+    cursor: pointer;
 }

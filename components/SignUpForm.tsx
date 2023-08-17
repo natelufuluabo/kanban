@@ -1,14 +1,11 @@
-import { Dispatch, FormEvent, SetStateAction, useState } from "react";
+"use client";
+import { FormEvent, useState } from "react";
 import styles from "./SignUpForm.module.scss";
 import { User } from "@/classes/User";
 import { signUpFormformValidate } from "@/Utilities/utils-functions";
 import { signUpUser } from "@/firebase/authentication";
 
-interface propsType {
-  setSignUpShowing: Dispatch<SetStateAction<boolean>>
-}
-
-export const SignUpForm = ({ setSignUpShowing }: propsType) => {
+export const SignUpForm = () => {
   const [formDatas, setFormDatas] = useState<User>({
     firstName: "",
     lastName: "",
@@ -26,18 +23,16 @@ export const SignUpForm = ({ setSignUpShowing }: propsType) => {
         email: "",
         password: ""
       });
-      setSignUpShowing(false);
     }
   };
   return (
-    <div className={styles.signUpFormContainer}>
+    <main className={styles.signUpFormContainer}>
       <form className={styles.signUpForm} onSubmit={handleSubmit}>
         <div className={styles.topSection}>
           <div className={styles.textContainer}>
             <h2>Sign Up</h2>
             <p>It&apos;s quick and easy.</p>
           </div>
-          <button onClick={() => setSignUpShowing(false)} className={styles.closeFormButton}>X</button>
         </div>
         <div className={styles.inputContainer}>
           <input 
@@ -80,6 +75,6 @@ export const SignUpForm = ({ setSignUpShowing }: propsType) => {
         </div>
         <button type="submit" className={styles.signUpButton}>Sign Up</button>
       </form>
-    </div>
+    </main>
   )
 };

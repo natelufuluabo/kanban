@@ -1,27 +1,25 @@
 $breakpoint1: 1000px;
 $breakpoint2: 1700px;
 .signUpFormContainer {
-    position: absolute;
     background-color: #0f002cdf;
     height: 100%;
     width: 100%;
     display: flex;
-    align-items: center;
+    padding-top: 2rem;
+    align-items: flex-start;
     justify-content: center;
 }
 
 .signUpForm {
     display: flex;
     flex-direction: column;
-    border: .1rem solid #d307ea;
     border-radius: 1.5rem;
     width: 95%;
     padding: 1.5rem 2rem;
     gap: 2.5rem;
-    background-color: #0f002cdf;
     
     @media (min-width: $breakpoint1) {
-        width: 40%;
+        width: 30%;
     }
 
     @media (min-width: $breakpoint2) {
@@ -72,7 +70,8 @@ $breakpoint2: 1700px;
     }
 
     input:focus {
-        outline-style: none;
+        border: .3rem solid #d307ea;
+        outline-style:inset;
     }
 }
 
@@ -85,7 +84,7 @@ $breakpoint2: 1700px;
 
 .signUpButton {
     border: none;
-    align-self: center;
+    align-self: flex-start;
     font-size: 1.8rem;
     padding: 1.5rem 3rem;
     background-color: #d307ea;

@@ -30,7 +30,7 @@ $breakpoint2: 1700px;
 
 .topSection {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .textContainer {
@@ -85,7 +85,7 @@ $breakpoint2: 1700px;
 
 .signUpButton {
     border: none;
-    align-self: flex-start;
+    align-self: center;
     font-size: 1.8rem;
     padding: 1.5rem 3rem;
     background-color: #d307ea;

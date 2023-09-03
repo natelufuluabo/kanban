@@ -3,7 +3,7 @@ import { app } from "./config";
 import { addUser } from "./usersCollection";
 
 // Initialize Firebase Authentication and get a reference to the service
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
 export const signUpUser = async (user, setErrorMessage, setSuccessMessageShowing) => {
     try {
@@ -25,13 +25,13 @@ export const signInUser = async (formData, setErrorMessage, setFormData) => {
         const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password)
         // Get user authID
         const authID = userCredential.user.uid;
-        // Redirect user to manager page
-        window.location.href = "/manager";
         setErrorMessage("");
         setFormData({
             email: "",
             password: ""
         });
+        // return authID
+        window.location.href = "/manager";
     } catch (error) {
         setErrorMessage(error.message);
         setFormData({
@@ -44,7 +44,6 @@ export const signInUser = async (formData, setErrorMessage, setFormData) => {
 export const signOutUser = async () => {
     try {
         await signOut(auth);
-        window.location.href = "/login";
     } catch (error) {
         console.error(error);
     }

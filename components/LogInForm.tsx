@@ -19,7 +19,6 @@ export const LogInForm = () => {
   });
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    console.log("Clicked")
     setWaiting(true);
     if (loginFormformValidate(formData, setErrorMessage)) {
       await signInUser(formData, setErrorMessage, setFormData);

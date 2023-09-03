@@ -11,7 +11,7 @@ export const addUser = async (user, authID) => {
             email: user.email,
             authID
         });
-        console.log("Document written with ID: ", docRef.id);
+        return docRef;
     } catch (e) {
         console.error("Error adding document: ", e);
     }

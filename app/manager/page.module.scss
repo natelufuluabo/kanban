@@ -1,0 +1,43 @@
+.main {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+}
+
+// Success content styling //
+
+
+// Error content styling //
+.errorMessageContainer {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    padding-top: 3rem;
+    text-align: center;
+
+    p {
+        font-size: 2rem;
+        line-height: 1.5;
+    }
+
+    a:link, 
+    a:visited,
+    a:active {
+        text-decoration: none;
+        transition: all 0.4s;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+.triangle {
+    font-size: 20rem;
+    color: #d307ea93;
+    background-color: inherit;
+    border: none;
+}

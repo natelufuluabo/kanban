@@ -8,8 +8,10 @@ import { signOutUser } from "@/firebase/authentication";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase/authentication";
 import { getUser } from "@/firebase/usersCollection";
+import { getProject } from "@/firebase/projectsCollection";
 import LoadingComponent from "@/components/Loading";
 import { LogginError } from "@/components/LoginError";
+
 
 export default function Home() {
     const [userLoggedIn, setLoggedIn] = useState(false);
@@ -26,6 +28,7 @@ export default function Home() {
             if (user) {
                 setLoggedIn(true);
                 const userData = await getUser(user.uid);
+                const projectData = await getProject(userData?.id);
                 setLoadingState(false);
             } else {
                 setLoggedIn(false);
@@ -36,10 +39,28 @@ export default function Home() {
     const renderPage = () => {
         if (userLoggedIn) {
             return (
-                <>
+                <div className={styles.appContainer}>
+                    <div className={styles.sideBar}>
+                        <div className={styles.logoContainer}>
+                            <h1 className={styles.logo}>kanban</h1>
+                        </div>
+                        <p>ALL PROJECT</p>
+                        <ul className={styles.projectList}>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <div className={styles.mainContainer}>
+                        <div className={styles.topBar}></div>
+                        <div className={styles.tasksContainer}>
+                            <div className={styles.todosContainer}></div>
+                            <div className={styles.doingContainer}></div>
+                            <div className={styles.doneContainer}></div>
+                        </div>
+                    </div>
                     <p>Manager page</p>
                     <button onClick={handleSignOut}>Sign Out</button>
-                </>
+                </div>
             )
         }
         return !signingOut && <LogginError />

@@ -1,15 +1,12 @@
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore"; 
 import { db } from "./config";
 
-const usersRef = collection(db, "users");
+const projectsRef = collection(db, "projects");
 
-export const addUser = async (user, authID) => {
+export const addProject = async (title, ownerID) => {
     try {
-        const docRef = await addDoc(usersRef, {
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email,
-            authID
+        const docRef = await addDoc(projectsRef, {
+            title, ownerID
         });
         return docRef;
     } catch (e) {
@@ -17,9 +14,9 @@ export const addUser = async (user, authID) => {
     }
 };
 
-export const getUser = async (authID) => {
+export const getProject = async (ownerID) => {
     try {
-        const q = query(usersRef, where("authID", "==", authID));
+        const q = query(projectsRef, where("ownerID", "==", ownerID));
         const result = await getDocs(q);
         const promises = result.docs.map(async (doc) => {
             const id = doc.id;
@@ -27,7 +24,7 @@ export const getUser = async (authID) => {
             const document = { id, data };
             return document;
         });
-        const documents = await promises[0];
+        const documents = await Promise.all(promises);
 
         return documents;
     } catch (error) {

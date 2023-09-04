@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./page.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,12 +9,12 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase/authentication";
 import { getUser } from "@/firebase/usersCollection";
 import LoadingComponent from "@/components/Loading";
+import { LogginError } from "@/components/LoginError";
 
 export default function Home() {
     const [userLoggedIn, setLoggedIn] = useState(false);
     const [isLoading, setLoadingState] = useState(true);
     const [signingOut, setSigningOut] = useState(false);
-    const managerContainer = useRef(null);
     const handleSignOut = async() => {
         setSigningOut(true);
         setLoadingState(true);
@@ -42,22 +42,7 @@ export default function Home() {
                 </>
             )
         }
-        return (
-            <>
-                {
-                    !signingOut && 
-                    <div ref={managerContainer} className={styles.errorMessageContainer}>
-                        <button className={styles.triangle}>
-                            <FontAwesomeIcon
-                                icon={faTriangleExclamation}
-                            />
-                        </button>
-                        <p>Error 404: Not Found. You are not logged in.</p>
-                        <p>Click <Link href="/login">here</Link> to log in</p>
-                    </div>
-                }
-            </>
-        )
+        return !signingOut && <LogginError />
     }
     return (
         <main className={styles.main}>

@@ -1,8 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google';
-import { NavBar } from '@/components/NavBar';
-import { Footer } from '@/components/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -27,9 +25,7 @@ export default function RootLayout({
         <link rel='icon' href='./K.jpg' />
       </head>
       <body className={inter.className}>
-        <NavBar />
         {children}
-        <Footer />
       </body>
     </html>
   )

@@ -11,6 +11,7 @@ import { getUser } from "@/firebase/usersCollection";
 import { getProject } from "@/firebase/projectsCollection";
 import LoadingComponent from "@/components/Loading";
 import { LogginError } from "@/components/LoginError";
+import { getTasks } from "@/firebase/tasksCollection";
 
 
 export default function Home() {

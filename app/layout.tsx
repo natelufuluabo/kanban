@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google';
+import RecoilContextProvider from "./recoilContextProvider";
 
 const inter = Inter({ subsets: ['latin'] });
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -25,7 +26,9 @@ export default function RootLayout({
         <link rel='icon' href='./K.jpg' />
       </head>
       <body className={inter.className}>
-        {children}
+        <RecoilContextProvider>
+          {children}
+        </RecoilContextProvider>
       </body>
     </html>
   )

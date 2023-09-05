@@ -1,16 +1,24 @@
 "use client";
 
 import { RecoilRoot, atom } from "recoil";
-export const userData = atom({
+import { DocumentData } from "firebase/firestore";
+
+export const userDataAtom = atom<{ id: string; data: DocumentData; } | undefined>({
   key: "userData",
-  default: {},
+  default: {
+    id: "",
+    data: {}
+  },
 });
 
-export const projectData = atom({
+export const projectDataAtom = atom<{
+  id: string;
+  data: DocumentData;
+}[] | undefined>({
     key: "projectData",
     default: []
 })
 
-export default function RecoidContextProvider({ children }: { children: React.ReactNode }) {
+export default function RecoilContextProvider({ children }: { children: React.ReactNode }) {
   return <RecoilRoot>{children}</RecoilRoot>;
 }

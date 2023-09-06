@@ -1,14 +1,16 @@
 import styles from "./SideBar.module.scss";
 import { useRecoilValue } from "recoil";
 import { projectDataAtom } from "@/app/recoilContextProvider";
+import { useState } from "react";
 
 export const SideBar = () => {
     const projectData = useRecoilValue(projectDataAtom);
+    const [selectedProject, setSelectedProject] = useState("");
     const renderProjects = () => {
         return projectData?.map((project) => {
-            const { id, data} = project;
+            const { id, data } = project;
             return (
-                <li key={id}>
+                <li onClick={() => setSelectedProject(id)} id={id} className={selectedProject === id ? styles.selectedProject :styles.default} key={id}>
                     {data.title}
                 </li>
             )
@@ -19,8 +21,11 @@ export const SideBar = () => {
             <div className={styles.logoContainer}>
                 <h1 className={styles.logo}>kanban</h1>
             </div>
-            <p>ALL PROJECT</p>
-            <ul className={styles.projectList}>{renderProjects()}</ul>
+            <ul className={styles.projectList}>
+                <li className={styles.firstChild}>ALL PROJECT ({projectData?.length})</li>
+                {renderProjects()}
+                <li className={styles.lastChild}>+Add New Project</li>
+            </ul>
         </div>
     )
 };

@@ -1,0 +1,61 @@
+.sideBar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-right: .01rem solid #aea9a9;
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+    padding-left: 3rem;
+    height: 9%;
+}
+
+.logo {
+    font-size: 3rem;
+    font-weight: 600;
+    color: #d307ea;
+    letter-spacing: .5rem;
+}
+
+.projectList {
+    display: flex;
+    flex-direction: column;
+    padding-right: 5rem;
+
+    li {
+        padding: 2rem 0;
+        padding-left: 3rem;
+        font-size: 1.6rem;
+        cursor: pointer;
+    }
+}
+
+.firstChild {
+    color: #aea9a9;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.lastChild {
+    transition: all 0.4s;
+    margin-top: 2rem;
+    color: #d307ea;
+}
+
+.lastChild:hover {
+    text-decoration: underline;
+}
+
+.selectedProject {
+    display: inline-block;
+    background-color: #d307ea;
+    padding: 2rem 0;
+    border-radius: 0 3rem 3rem 0;
+}
+
+.default {
+    padding: 2rem 0;
+    color: #aea9a9;
+}

@@ -5,13 +5,13 @@ import { signOutUser } from "@/firebase/authentication";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase/authentication";
 import { getUser } from "@/firebase/usersCollection";
-import { getProject } from "@/firebase/projectsCollection";
+import { addProject, getProject } from "@/firebase/projectsCollection";
 import { LogginError } from "@/components/LoginError";
 import LoadingComponent from "@/components/Loading";
 import { SideBar } from "@/components/SideBar";
 import { useRecoilState } from "recoil";
 import { userDataAtom, projectDataAtom } from "../recoilContextProvider";
-
+import { AddProjectForm } from "@/components/AddProjectForm";
 
 export default function Home() {
     const [userLoggedIn, setLoggedIn] = useState(false);
@@ -43,6 +43,7 @@ export default function Home() {
             return (
                 <div className={styles.appContainer}>
                     <SideBar />
+                    <AddProjectForm />
                     <div className={styles.mainContainer}>
                         <div className={styles.topBar}></div>
                         <div className={styles.tasksContainer}>
@@ -50,8 +51,8 @@ export default function Home() {
                             <div className={styles.doingContainer}></div>
                             <div className={styles.doneContainer}></div>
                         </div>
-                    <p>Manager page</p>
-                    <button onClick={handleSignOut}>Sign Out</button>
+                        <p>Manager page</p>
+                        <button onClick={handleSignOut}>Sign Out</button>
                     </div>
                 </div>
             )

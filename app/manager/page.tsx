@@ -17,6 +17,7 @@ export default function Home() {
     const [userLoggedIn, setLoggedIn] = useState(false);
     const [isLoading, setLoadingState] = useState(true);
     const [signingOut, setSigningOut] = useState(false);
+    const [newProjectFormShowing, setNewProjectFormState] = useState(false);
     const [userData, setUserData] = useRecoilState(userDataAtom);
     const [projectData, setProjectData] = useRecoilState(projectDataAtom);
     const handleSignOut = async() => {
@@ -42,8 +43,8 @@ export default function Home() {
         if (userLoggedIn) {
             return (
                 <div className={styles.appContainer}>
-                    <SideBar />
-                    <AddProjectForm />
+                    <SideBar setNewProjectFormState={setNewProjectFormState} />
+                    { newProjectFormShowing && <AddProjectForm setNewProjectFormState={setNewProjectFormState} /> }
                     <div className={styles.mainContainer}>
                         <div className={styles.topBar}></div>
                         <div className={styles.tasksContainer}>

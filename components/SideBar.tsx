@@ -1,9 +1,13 @@
 import styles from "./SideBar.module.scss";
 import { useRecoilValue } from "recoil";
 import { projectDataAtom } from "@/app/recoilContextProvider";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
-export const SideBar = () => {
+interface propsType {
+    setNewProjectFormState: Dispatch<SetStateAction<boolean>>
+}
+
+export const SideBar = ({ setNewProjectFormState }: propsType) => {
     const projectData = useRecoilValue(projectDataAtom);
     const [selectedProject, setSelectedProject] = useState("");
     const renderProjects = () => {
@@ -24,7 +28,7 @@ export const SideBar = () => {
             <ul className={styles.projectList}>
                 <li className={styles.firstChild}>ALL PROJECT ({projectData?.length})</li>
                 {renderProjects()}
-                <li className={styles.lastChild}>+Add New Project</li>
+                <li onClick={() => setNewProjectFormState(true)} className={styles.lastChild}>+Add New Project</li>
             </ul>
         </div>
     )
